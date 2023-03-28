@@ -15,11 +15,11 @@ FROM --platform=$build_for python:3.9.9-slim-bullseye as base
 # N.B. dbt-postgres is currently found in the core codebase so a value of dbt-core@<some_version> is correct
 
 ARG dbt_core_ref=dbt-core@v1.4.5
-ARG dbt_postgres_ref=dbt-core@v1.4.3
-ARG dbt_redshift_ref=dbt-redshift@v1.4.3
+ARG dbt_postgres_ref=dbt-core@v1.4.5
+ARG dbt_redshift_ref=dbt-redshift@v1.4.0
 ARG dbt_bigquery_ref=dbt-bigquery@v1.4.3
-ARG dbt_snowflake_ref=dbt-snowflake@v1.4.3
-ARG dbt_spark_ref=dbt-spark@v1.4.3
+ARG dbt_snowflake_ref=dbt-snowflake@v1.4.2
+ARG dbt_spark_ref=dbt-spark@v1.4.1
 # special case args
 ARG dbt_spark_version=all
 ARG dbt_third_party
@@ -109,8 +109,8 @@ RUN python -m pip install --no-cache-dir "git+https://github.com/dbt-labs/${dbt_
 ##
 # dbt-third-party
 ##
-FROM dbt-core as dbt-third-party
-RUN python -m pip install --no-cache-dir "${dbt_third_party}"
+#FROM dbt-core as dbt-third-party
+#RUN python -m pip install --no-cache-dir "${dbt_third_party}"
 
 ##
 # dbt-all
