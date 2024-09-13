@@ -16,13 +16,13 @@ FROM --platform=$build_for python:3.10.7-slim-bullseye as base
 # N.B. The refs updated automagically every release via bumpversion
 # N.B. dbt-postgres is currently found in the core codebase so a value of dbt-core@<some_version> is correct
 
-ARG dbt_core_ref=dbt-core@v1.7.3
-ARG dbt_postgres_ref=dbt-core@v1.7.3
-ARG dbt_redshift_ref=dbt-redshift@v1.7.1
-ARG dbt_bigquery_ref=dbt-bigquery@v1.7.2
-ARG dbt_snowflake_ref=dbt-snowflake@v1.7.1
-ARG dbt_spark_ref=dbt-spark@v1.7.1
-ARG dbt_databricks_ref=dbt-databricks@v1.7.3
+ARG dbt_core_ref=dbt-core@v1.8.2
+ARG dbt_postgres_ref=dbt-postgres@v1.8.2
+ARG dbt_redshift_ref=dbt-redshift@v1.8.1
+ARG dbt_bigquery_ref=dbt-bigquery@v1.8.2
+ARG dbt_snowflake_ref=dbt-snowflake@v1.8.2
+ARG dbt_spark_ref=dbt-spark@v1.8.0
+ARG dbt_databricks_ref=dbt-databricks@v1.8.2
 # special case args
 ARG dbt_spark_version=all
 ARG dbt_third_party
@@ -65,7 +65,7 @@ RUN python -m pip install --no-cache-dir "git+https://github.com/dbt-labs/${dbt_
 # dbt-postgres
 ##
 FROM base as dbt-postgres
-RUN python -m pip install --no-cache-dir "git+https://github.com/dbt-labs/${dbt_postgres_ref}#egg=dbt-postgres&subdirectory=plugins/postgres"
+RUN python -m pip install --no-cache-dir "git+https://github.com/dbt-labs/${dbt_postgres_ref}#egg=dbt-postgres"
 
 
 ##
@@ -140,4 +140,4 @@ RUN apt-get update \
   RUN python -m pip install --no-cache "git+https://github.com/dbt-labs/${dbt_snowflake_ref}#egg=dbt-snowflake"
   RUN python -m pip install --no-cache "git+https://github.com/databricks/${dbt_databricks_ref}#egg=dbt-databricks"
   RUN python -m pip install --no-cache "git+https://github.com/dbt-labs/${dbt_spark_ref}#egg=dbt-spark[${dbt_spark_version}]"
-  RUN python -m pip install --no-cache "git+https://github.com/dbt-labs/${dbt_postgres_ref}#egg=dbt-postgres&subdirectory=plugins/postgres"
+  RUN python -m pip install --no-cache "git+https://github.com/dbt-labs/${dbt_postgres_ref}#egg=dbt-postgres"
