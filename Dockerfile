@@ -1,4 +1,4 @@
-ARG DBT_VERSION=v1.8.2
+ARG DBT_VERSION=v1.9.0
 FROM ghcr.io/mdesnoyer/dbt_all:${DBT_VERSION}
 
 ENV DBT_PROFILES_DIR=prod_profile
